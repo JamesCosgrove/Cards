@@ -9,8 +9,18 @@
 import SwiftUI
 
 struct ContentView: View {
+	@ObservedObject var services = CardServices()
     var body: some View {
-        Text("Hello, World!")
+		VStack {
+			StackView()
+			Button(action: {
+				self.services.shuffle()
+			}, label: {
+				Text("Shuffle")
+					.font(.system(size: 30, weight: .semibold, design: .serif))
+					.foregroundColor(Color(UIColor.label))
+			}).padding(.top, 50)
+		}
     }
 }
 
