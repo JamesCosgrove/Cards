@@ -40,6 +40,7 @@
 		1A235DF1243914C30009710D /* CardServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardServices.swift; sourceTree = "<group>"; };
 		1A235DF3243914DF0009710D /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		1A235DFA243928EF0009710D /* Two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Two.png; path = ../../../../../../Desktop/Two.png; sourceTree = "<group>"; };
+		1A235DFC2439299E0009710D /* Two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Two.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +85,7 @@
 				1A235DDF243909570009710D /* LaunchScreen.storyboard */,
 				1A235DE2243909570009710D /* Info.plist */,
 				1A235DD5243909560009710D /* Cards.xcdatamodeld */,
+				1A235DFC2439299E0009710D /* Two.png */,
 				1A235DF5243927030009710D /* Images */,
 				1A235DDC243909570009710D /* Preview Content */,
 			);
