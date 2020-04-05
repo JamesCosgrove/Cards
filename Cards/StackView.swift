@@ -14,25 +14,55 @@ struct StackView: View {
 	@State private var currentPosition: CGSize = .zero
     @State private var newPosition: CGSize = .zero
 	
+	enum DragState {
+        case inactive
+        case active(translation: CGSize)
+
+        var translation: CGSize {
+            switch self {
+            case .inactive:
+                return .zero
+            case .active(let t):
+                return t
+            }
+        }
+
+        var isActive: Bool {
+            switch self {
+            case .inactive: return false
+            case .active: return true
+            }
+        }
+    }
+    @GestureState var dragState = DragState.inactive
+    @State var viewState = CGSize.zero
+	
     var body: some View {
-		ZStack {
+		
+		let gesture = DragGesture()
+						.updating($dragState) { (value, dragInfo, _) in
+							dragInfo = .active(translation: value.translation)
+						}
+						.onEnded{_ in
+							self.services.cardList = self.f(self.services.cardList)
+						}
+		
+		return ZStack {
 			ForEach(services.cardList, id: \.self) { card in
 				CardView(color: card.color, value: card.value, suit: card.suit)
 					.rotationEffect(Angle(degrees: Double.random(in: -5...5)))
-					.offset(x: CGFloat.random(in: -5...5) + self.currentPosition.width, y: CGFloat.random(in: -5...5) + self.currentPosition.height)
+				.gesture(gesture)
 					.animation(.spring())
-				.gesture(DragGesture()
-					.onChanged { value in
-							self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
-					}   // 4.
-					.onEnded { value in
-						self.services.shuffle()
-						self.currentPosition = CGSize(width: 0, height: 0)
-						self.newPosition = self.currentPosition
-					}
-				)
+					.offset(x: card == self.services.cardList[self.services.cardList.count - 1] ? self.viewState.width + self.dragState.translation.width * 1 : self.viewState.width - self.dragState.translation.width * 1, y: card == self.services.cardList[self.services.cardList.count - 1] ? self.viewState.height + self.dragState.translation.height * 1 : self.viewState.height - self.dragState.translation.height * 1)
+				
 			}
 		}
+    }
+	func f(_ list: [Card]) -> [Card] {
+        var a = list
+        let b = a.removeLast()
+        a.insert(b, at: 0 )
+        return a
     }
 }
 

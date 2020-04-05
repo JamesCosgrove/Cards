@@ -13,6 +13,7 @@ struct CardView: View {
 	@State var value: String
 	@State var suit: String
 	
+	
     var body: some View {
 		ZStack {
 			RoundedRectangle(cornerRadius: 30)
