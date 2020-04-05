@@ -22,7 +22,6 @@ class CardServices: ObservableObject {
 	}
 	
 	func shuffle() {
-		
 		let suits = ["diamond", "heart", "club", "spade"]
 		let values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 		var cards = [Card]()

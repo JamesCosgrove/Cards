@@ -35,18 +35,18 @@ struct CardView: View {
 			if showBack {
 				BackView()
 			}
-		}.frame(width: UIScreen.screenWidth * 0.7, height: UIScreen.screenWidth, alignment: .center)
+		}.frame(width: 263, height: 375, alignment: .center)
 		.overlay(
 			RoundedRectangle(cornerRadius: 30)
 				
-				.stroke(Color(UIColor.black), lineWidth: 2)
+				.stroke(Color(UIColor.black), lineWidth: 5)
 		)
     }
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-		CardView(color: .black, value: "6", suit: "club", showBack: .constant(true))
+		CardView(color: .red, value: "A", suit: "heart", showBack: .constant(false))
     }
 }
 

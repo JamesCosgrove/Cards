@@ -14,7 +14,7 @@ struct ContentView: View {
 	let generator = UINotificationFeedbackGenerator()
     var body: some View {
 		VStack {
-			StackView(cards: $services.cardList)
+			StackView(cards: $services.cardList, previousCard: services.cardList[services.cardList.count - 1])
 			Button(action: {
 				self.services.shuffle()
 				self.generator.notificationOccurred(.error)
