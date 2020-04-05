@@ -16,9 +16,9 @@ struct CornerView: View {
     var body: some View {
 		VStack(spacing: 5) {
 			Text("\(value)")
-				.font(.system(size: 40, weight: .semibold, design: .serif))
+				.font(.system(size: 30, weight: .semibold, design: .serif))
 			Image(systemName: "suit.\(suit).fill")
-				.font(.system(size: 40))
+				.font(.system(size: 30))
 		}.foregroundColor(color)
 		
     }

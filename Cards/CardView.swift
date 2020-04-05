@@ -22,7 +22,7 @@ struct CardView: View {
 				HStack {
 					CornerView(color: color, value: value, suit: suit)
 					Spacer()
-				}
+				}.padding([.leading, .top])
 				Spacer(minLength: 0)
 				CentralView(color: color, value: value, suit: suit)
 				Spacer(minLength: 0)
@@ -30,11 +30,12 @@ struct CardView: View {
 					Spacer()
 					CornerView(color: color, value: value, suit: suit)
 					.rotationEffect(Angle(degrees: 180))
-				}
-			}.padding()
+				}.padding([.trailing, .bottom])
+			}
 		}.frame(width: UIScreen.screenWidth * 0.7, height: UIScreen.screenWidth, alignment: .center)
 		.overlay(
 			RoundedRectangle(cornerRadius: 30)
+				
 				.stroke(Color(UIColor.label), lineWidth: 2)
 		)
     }
@@ -42,7 +43,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-		CardView(color: .black, value: "J", suit: "club")
+		CardView(color: .black, value: "6", suit: "club")
     }
 }
 

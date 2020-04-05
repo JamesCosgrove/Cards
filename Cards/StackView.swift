@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct StackView: View {
-	@ObservedObject var services = CardServices()
-	
+	@Binding var cards: [Card]
+	let generator = UINotificationFeedbackGenerator()
 	@State private var currentPosition: CGSize = .zero
     @State private var newPosition: CGSize = .zero
 	
@@ -44,16 +44,18 @@ struct StackView: View {
 							dragInfo = .active(translation: value.translation)
 						}
 						.onEnded{_ in
-							self.services.cardList = self.f(self.services.cardList)
+							self.cards = self.f(self.cards)
+							let impactLight = UIImpactFeedbackGenerator(style: .light)
+							impactLight.impactOccurred()
 						}
 		
 		return ZStack {
-			ForEach(services.cardList, id: \.self) { card in
+			ForEach(cards, id: \.self) { card in
 				CardView(color: card.color, value: card.value, suit: card.suit)
 					.rotationEffect(Angle(degrees: Double.random(in: -5...5)))
 				.gesture(gesture)
 					.animation(.spring())
-					.offset(x: card == self.services.cardList[self.services.cardList.count - 1] ? self.viewState.width + self.dragState.translation.width * 1 : self.viewState.width - self.dragState.translation.width * 1, y: card == self.services.cardList[self.services.cardList.count - 1] ? self.viewState.height + self.dragState.translation.height * 1 : self.viewState.height - self.dragState.translation.height * 1)
+					.offset(x: card == self.cards[self.cards.count - 1] ? self.viewState.width + self.dragState.translation.width * 1 : self.viewState.width - self.dragState.translation.width * 1, y: card == self.cards[self.cards.count - 1] ? self.viewState.height + self.dragState.translation.height * 1 : self.viewState.height - self.dragState.translation.height * 1)
 				
 			}
 		}
@@ -68,6 +70,6 @@ struct StackView: View {
 
 struct StackView_Previews: PreviewProvider {
     static var previews: some View {
-        StackView()
+		StackView(cards: .constant([Card]()))
     }
 }

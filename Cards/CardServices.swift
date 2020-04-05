@@ -15,14 +15,18 @@ class CardServices: ObservableObject {
 	
 	@Published var cardList = [Card]()
 	
+	var runBefore = false
+	
 	init() {
 		shuffle()
 	}
 	
 	func shuffle() {
 		
+		let suits = ["diamond", "heart", "club", "spade"]
+		let values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 		var cards = [Card]()
-		
+		print("shuffling")
 		for suit in suits {
 			for value in values {
 				var color: Color
@@ -36,10 +40,6 @@ class CardServices: ObservableObject {
 			}
 		}
 		cardList = cards.shuffled()
-		
 	}
-	
-	let suits = ["diamond", "heart", "club", "spade"]
-	let values = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 	
 }

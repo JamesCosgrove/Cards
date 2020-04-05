@@ -10,11 +10,13 @@ import SwiftUI
 
 struct ContentView: View {
 	@ObservedObject var services = CardServices()
+	let generator = UINotificationFeedbackGenerator()
     var body: some View {
 		VStack {
-			StackView()
+			StackView(cards: $services.cardList)
 			Button(action: {
 				self.services.shuffle()
+				self.generator.notificationOccurred(.error)
 			}, label: {
 				Text("Shuffle")
 					.font(.system(size: 30, weight: .semibold, design: .serif))
