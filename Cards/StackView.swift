@@ -13,6 +13,8 @@ struct StackView: View {
 	let generator = UINotificationFeedbackGenerator()
 	@State private var currentPosition: CGSize = .zero
     @State private var newPosition: CGSize = .zero
+	@State private var cardSwap = false
+	@State var showBack = false
 	
 	enum DragState {
         case inactive
@@ -43,22 +45,30 @@ struct StackView: View {
 						.updating($dragState) { (value, dragInfo, _) in
 							dragInfo = .active(translation: value.translation)
 						}
-						.onEnded{_ in
+						.onEnded{ value in
 							self.cards = self.f(self.cards)
 							let impactLight = UIImpactFeedbackGenerator(style: .light)
 							impactLight.impactOccurred()
+							
 						}
+		
 		
 		return ZStack {
 			ForEach(cards, id: \.self) { card in
-				CardView(color: card.color, value: card.value, suit: card.suit)
-					.rotationEffect(Angle(degrees: Double.random(in: -5...5)))
+				CardView(color: card.color, value: card.value, suit: card.suit, showBack: self.$showBack)
+					.rotationEffect(Angle(degrees: card != self.cards[self.cards.count - 1] ? Double.random(in: -5...5) : 0))
+				
 				.gesture(gesture)
 					.animation(.spring())
-					.offset(x: card == self.cards[self.cards.count - 1] ? self.viewState.width + self.dragState.translation.width * 1 : self.viewState.width - self.dragState.translation.width * 1, y: card == self.cards[self.cards.count - 1] ? self.viewState.height + self.dragState.translation.height * 1 : self.viewState.height - self.dragState.translation.height * 1)
+					.offset(x: card == self.cards[self.cards.count - 1] ? self.viewState.width + self.dragState.translation.width * 1 : self.viewState.width - self.dragState.translation.width * 1 ,
+							y: card == self.cards[self.cards.count - 1] ? self.viewState.height + self.dragState.translation.height * 1 : self.viewState.height - self.dragState.translation.height * 1)
 				
 			}
 		}
+	.onTapGesture(perform: {
+		self.showBack.toggle()
+	})
+		
     }
 	func f(_ list: [Card]) -> [Card] {
         var a = list
@@ -66,6 +76,7 @@ struct StackView: View {
         a.insert(b, at: 0 )
         return a
     }
+	
 }
 
 struct StackView_Previews: PreviewProvider {

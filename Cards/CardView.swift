@@ -12,7 +12,7 @@ struct CardView: View {
 	@State var color: Color
 	@State var value: String
 	@State var suit: String
-	
+	@Binding var showBack: Bool
 	
     var body: some View {
 		ZStack {
@@ -32,18 +32,25 @@ struct CardView: View {
 					.rotationEffect(Angle(degrees: 180))
 				}.padding([.trailing, .bottom])
 			}
+			if showBack {
+				RoundedRectangle(cornerRadius: 30)
+				.foregroundColor(.white)
+				RoundedRectangle(cornerRadius: 20)
+				.foregroundColor(.red)
+					.frame(width: UIScreen.screenWidth * 0.65, height: UIScreen.screenWidth * 0.95, alignment: .center)
+			}
 		}.frame(width: UIScreen.screenWidth * 0.7, height: UIScreen.screenWidth, alignment: .center)
 		.overlay(
 			RoundedRectangle(cornerRadius: 30)
 				
-				.stroke(Color(UIColor.label), lineWidth: 2)
+				.stroke(Color(UIColor.black), lineWidth: 2)
 		)
     }
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-		CardView(color: .black, value: "6", suit: "club")
+		CardView(color: .black, value: "6", suit: "club", showBack: .constant(true))
     }
 }
 
