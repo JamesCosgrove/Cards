@@ -20,6 +20,8 @@
 		1A235DF0243914950009710D /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A235DEF243914950009710D /* StackView.swift */; };
 		1A235DF2243914C30009710D /* CardServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A235DF1243914C30009710D /* CardServices.swift */; };
 		1A235DF4243914DF0009710D /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A235DF3243914DF0009710D /* CardModel.swift */; };
+		1A8F3266243A16E10067AD8A /* BackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F3265243A16E10067AD8A /* BackView.swift */; };
+		1A8F3268243A1FF50067AD8A /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8F3267243A1FF50067AD8A /* OptionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		1A235DF1243914C30009710D /* CardServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardServices.swift; sourceTree = "<group>"; };
 		1A235DF3243914DF0009710D /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		1A235DFC2439299E0009710D /* Two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Two.png; sourceTree = "<group>"; };
+		1A8F3265243A16E10067AD8A /* BackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackView.swift; sourceTree = "<group>"; };
+		1A8F3267243A1FF50067AD8A /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 				1A235DF1243914C30009710D /* CardServices.swift */,
 				1A235DD8243909560009710D /* ContentView.swift */,
 				1A235DE8243909640009710D /* CardView.swift */,
+				1A8F3267243A1FF50067AD8A /* OptionsView.swift */,
 				1A235DEF243914950009710D /* StackView.swift */,
 				1A235DEC243911430009710D /* Card Subviews */,
 				1A235DDA243909570009710D /* Assets.xcassets */,
@@ -102,6 +107,7 @@
 			children = (
 				1A235DEA24390BFE0009710D /* CornerView.swift */,
 				1A235DED243911570009710D /* CentralViews.swift */,
+				1A8F3265243A16E10067AD8A /* BackView.swift */,
 			);
 			path = "Card Subviews";
 			sourceTree = "<group>";
@@ -177,8 +183,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A8F3266243A16E10067AD8A /* BackView.swift in Sources */,
 				1A235DD7243909560009710D /* Cards.xcdatamodeld in Sources */,
 				1A235DEE243911570009710D /* CentralViews.swift in Sources */,
+				1A8F3268243A1FF50067AD8A /* OptionsView.swift in Sources */,
 				1A235DEB24390BFE0009710D /* CornerView.swift in Sources */,
 				1A235DF0243914950009710D /* StackView.swift in Sources */,
 				1A235DD2243909560009710D /* AppDelegate.swift in Sources */,

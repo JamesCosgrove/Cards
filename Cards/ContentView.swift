@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
 	@ObservedObject var services = CardServices()
+	@State var showOptions = false
 	let generator = UINotificationFeedbackGenerator()
     var body: some View {
 		VStack {
@@ -22,7 +23,9 @@ struct ContentView: View {
 					.font(.system(size: 30, weight: .semibold, design: .serif))
 					.foregroundColor(Color(UIColor.label))
 			}).padding(.top, 50)
-		}
+		}.sheet(isPresented: $showOptions, content: {
+			OptionsView()
+		})
     }
 }
 

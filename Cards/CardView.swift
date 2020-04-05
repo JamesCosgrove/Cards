@@ -33,11 +33,7 @@ struct CardView: View {
 				}.padding([.trailing, .bottom])
 			}
 			if showBack {
-				RoundedRectangle(cornerRadius: 30)
-				.foregroundColor(.white)
-				RoundedRectangle(cornerRadius: 20)
-				.foregroundColor(.red)
-					.frame(width: UIScreen.screenWidth * 0.65, height: UIScreen.screenWidth * 0.95, alignment: .center)
+				BackView()
 			}
 		}.frame(width: UIScreen.screenWidth * 0.7, height: UIScreen.screenWidth, alignment: .center)
 		.overlay(

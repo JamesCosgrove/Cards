@@ -56,17 +56,19 @@ struct StackView: View {
 		return ZStack {
 			ForEach(cards, id: \.self) { card in
 				CardView(color: card.color, value: card.value, suit: card.suit, showBack: self.$showBack)
-					.rotationEffect(Angle(degrees: card != self.cards[self.cards.count - 1] ? Double.random(in: -5...5) : 0))
+					.rotationEffect(Angle(degrees: !self.dragState.isActive ? (card != self.cards[self.cards.count - 1] ? Double.random(in: -5...5) : 0) : 0))
 				
 				.gesture(gesture)
-					.animation(.spring())
-					.offset(x: card == self.cards[self.cards.count - 1] ? self.viewState.width + self.dragState.translation.width * 1 : self.viewState.width - self.dragState.translation.width * 1 ,
-							y: card == self.cards[self.cards.count - 1] ? self.viewState.height + self.dragState.translation.height * 1 : self.viewState.height - self.dragState.translation.height * 1)
-				
+					
+					.offset(x: card == self.cards[self.cards.count - 1] ? self.viewState.width + self.dragState.translation.width * 1 : self.viewState.width - self.dragState.translation.width * 1.5 ,
+							y: card == self.cards[self.cards.count - 1] ? self.viewState.height + self.dragState.translation.height * 1 : self.viewState.height - self.dragState.translation.height * 1.5)
+					.rotation3DEffect(Angle(degrees: self.angleToRotate(card: card)), axis: (x: 0, y: 1, z: 0))
+				.animation(.spring())
 			}
 		}
 	.onTapGesture(perform: {
 		self.showBack.toggle()
+		
 	})
 		
     }
@@ -76,6 +78,29 @@ struct StackView: View {
         a.insert(b, at: 0 )
         return a
     }
+	func angleToRotate(card: Card) -> Double {
+		if card == self.cards[self.cards.count - 1] {
+			if dragState.isActive {
+				if dragState.translation.width > 0 {
+					return -15
+				}
+				else {
+					return 15
+				}
+			}
+		}
+		else {
+			if dragState.isActive {
+				if dragState.translation.width > 0 {
+					return 5
+				}
+				else {
+					return -5
+				}
+			}
+		}
+		return 0
+	}
 	
 }
 
